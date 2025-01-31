@@ -8,7 +8,7 @@ export async function getOffres() {
             sort: 'id',
         });
         data = data.map((maison) => {
-            maison.imageUrl = db.files.getUrl(maison, maison.image);
+            maison.imgUrl = db.files.getUrl(maison, maison.images);
             return maison;
         });
         console.log(data);

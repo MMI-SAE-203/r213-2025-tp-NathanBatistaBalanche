@@ -11,10 +11,11 @@ export interface Props {
     imgUrl: string;
 }
 
-const { nomMaison, adresse, prix, surface, nbChambres, nbSdb, favori, imgUrl } = Astro.props;
+const { nomMaison, adresse, prix, surface, nbChambres, nbSdb, favori, imgUrl} = Astro.props;
 ---
 <div class="border rounded-lg shadow-md p-4 m-4 max-w-sm">
     <div class="p-4">
+        <img src={imgUrl} alt={nomMaison} class="w-full h-48 object-cover rounded-lg" />
         <h2 class="text-2xl font-bold mb-2">{nomMaison}</h2>
         <p class="text-blue-300"><strong>Adresse:</strong> {adresse}</p>
         <p class="text-blue-300"><strong>Prix:</strong> {prix} €/mois</p>
