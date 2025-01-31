@@ -5,12 +5,25 @@ import Base from "../layouts/Base.astro";
 import { getOffres } from '../backend.mjs';
 
 const offres = await getOffres();
-
 ---
 
 <Base titre="Offres">
     <h1 class="text-4xl font-bold text-center text-green-200 uppercase tracking-wider my-6">Offres</h1>
-    <div x-data="{ showFavorites: false }" class="p-4">
+    <div x-data="{ showFavorites: false, view: 'grid' }" class="p-4">
+        <div class="flex gap-4 mb-4">
+            <button 
+                @click="view = 'grid'" 
+                class="bg-red-600 text-white px-4 py-2 rounded shadow hover:bg-red-700"
+            >
+                Affichage Grille
+            </button>
+            <button 
+                @click="view = 'list'" 
+                class="bg-red-600 text-white px-4 py-2 rounded shadow hover:bg-red-700"
+            >
+                Affichage Liste
+            </button>
+        </div>
         <button 
             @click="showFavorites = !showFavorites" 
             class="bg-red-600 text-white px-4 py-2 rounded shadow hover:bg-red-700"
@@ -18,16 +31,28 @@ const offres = await getOffres();
             <span x-show="!showFavorites">Afficher les favoris</span>
             <span x-show="showFavorites">Afficher tout</span>
         </button>
-
-        <div x-show="!showFavorites" class="grid grid-cols-3 items-stretch flex-wrap justify-center mt-4">
+        <div x-show="!showFavorites && view === 'grid'" class="grid grid-cols-3 items-stretch flex-wrap justify-center mt-4">
             {offres.map((offre) => (
                 <Card {...offre} />
             ))}
         </div>
-
-        <div x-show="showFavorites" class="grid grid-cols-3 items-stretch flex-wrap justify-center mt-4">
+        <div x-show="showFavorites && view === 'grid'" class="grid grid-cols-3 items-stretch flex-wrap justify-center mt-4">
             {offres.map((offre) => offre.favori && (
                 <Card {...offre} />
+            ))}
+        </div>
+        <div x-show="!showFavorites && view === 'list'" class="flex flex-col gap-4 mt-4">
+            {offres.map((offre) => (
+                <div>
+                    <Card {...offre} />
+                </div>
+            ))}
+        </div>
+        <div x-show="showFavorites && view === 'list'" class="flex flex-col gap-4 mt-4">
+            {offres.map((offre) => offre.favori && (
+                <div>
+                    <Card {...offre} />
+                </div>
             ))}
         </div>
     </div>
