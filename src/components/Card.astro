@@ -1,17 +1,18 @@
 ---
 
-export interface Props {
-    nomMaison: string;
-    adresse: string;
-    prix: number;
-    surface: number;
-    nbChambres: number;
-    nbSdb: number;
-    favori: boolean;
-    imgUrl: string;
-}
+// export interface Props {
+//     nomMaison: string;
+//     adresse: string;
+//     prix: number;
+//     surface: number;
+//     nbChambres: number;
+//     nbSdb: number;
+//     favori: boolean;
+//     imgUrl: string;
+//     id?: string;
+// }
 
-const { nomMaison, adresse, prix, surface, nbChambres, nbSdb, favori, imgUrl} = Astro.props;
+const { nomMaison, adresse, prix, surface, nbChambres, nbSdb, favori, imgUrl, id} = Astro.props;
 ---
 <div class="border rounded-lg shadow-md p-4 m-4 max-w-sm">
     <div class="p-4">
@@ -23,6 +24,7 @@ const { nomMaison, adresse, prix, surface, nbChambres, nbSdb, favori, imgUrl} = 
         <p class="text-blue-300"><strong>Chambres:</strong> {nbChambres}</p>
         <p class="text-blue-300"><strong>Salles de bain:</strong> {nbSdb}</p>
         {favori && <p class="text-pink-500 font-bold">★ Favori</p>}
+        <a href={`/offres/${id}`}>Voir plus</a>
     </div>
 </div>
 
