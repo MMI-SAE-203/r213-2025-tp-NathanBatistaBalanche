@@ -1,0 +1,22 @@
+---
+import { getMaisonsBySurface } from '../../../backend.mjs';
+import Base  from '../../../layouts/Base.astro';
+export const prerender = false;
+const { surface } = Astro.params;
+const offres = await getMaisonsBySurface(Number(surface));
+console.log("ooffre surf 80 : ",offres);
+
+---
+
+<Base titre={offres?.nomMaison}>
+    <h2>{offres.nomMaison}</offre>
+    <ul>
+        <li>{offres.adresse}</li>
+        <li>{offres.prix} €/mois</li>
+        <li>{offres.surface} m²</li>
+        <li>{offres.nbChambres} chambres</li>
+        <li>{offres.nbSdb} salles de bain</li>
+        <li>{offres.adresse}</li>
+        <li>{offres.favori && '★ Favori'}</li>
+    </ul>
+</Base>

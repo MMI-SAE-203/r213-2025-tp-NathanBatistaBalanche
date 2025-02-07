@@ -29,3 +29,21 @@ export async function getOffre(id) {
         return null;
     }
 }
+
+export async function getMaisonsBySurface(surface) {
+    try {
+        let data = await db.collection('maison').getFullList({
+            sort: 'id',
+        });
+        data = data.map((maison) => {
+            maison.imgUrl = db.files.getURL(maison, maison.images);
+            return maison;
+        });
+        data = data.filter((maison) => maison.surface > surface)
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.log('Une erreur est survenue en lisant la liste des maisons', error);
+        return [];
+    }
+}
