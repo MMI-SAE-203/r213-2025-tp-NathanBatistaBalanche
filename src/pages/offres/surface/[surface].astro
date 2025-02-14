@@ -1,6 +1,7 @@
 ---
 import { getMaisonsBySurface } from '../../../backend.mjs';
 import Base  from '../../../layouts/Base.astro';
+import Card from '../../../components/Card.astro';
 export const prerender = false;
 const { surface } = Astro.params;
 const offres = await getMaisonsBySurface(Number(surface));
