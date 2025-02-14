@@ -7,14 +7,16 @@ const offre = await getOffre(id);
 ---
 
 <Base titre={offre.nomMaison}>
-    <h2>{offre.nomMaison}</offre>
-    <ul>
-        <li>{offre.adresse}</li>
-        <li>{offre.prix} €/mois</li>
-        <li>{offre.surface} m²</li>
-        <li>{offre.nbChambres} chambres</li>
-        <li>{offre.nbSdb} salles de bain</li>
-        <li>{offre.adresse}</li>
-        <li>{offre.favori && '★ Favori'}</li>
-    </ul>
+    <div class="border rounded-lg shadow-md p-4 m-4 max-w-sm">
+        <div class="p-4">
+            <h2>{offre.nomMaison}</offre>
+            <p class="text-blue-300">{offre.adresse}</li>
+            <p class="text-blue-300">{offre.prix} €/mois</li>
+            <p class="text-blue-300">{offre.surface} m²</li>
+            <p class="text-blue-300">{offre.nbChambres} chambres</li>
+            <p class="text-blue-300">{offre.nbSdb} salles de bain</li>
+            <p class="text-blue-300">{offre.adresse}</li>
+            <p class="text-blue-300">{offre.favori && '★ Favori'}</li>
+        </div>
+    </div>
 </Base>
