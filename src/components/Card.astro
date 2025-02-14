@@ -23,10 +23,9 @@ const { nomMaison, adresse, prix, surface, nbChambres, nbSdb, favori, imgUrl, id
         <p class="text-blue-300"><strong>Surface:</strong> {surface} m²</p>
         <p class="text-blue-300"><strong>Chambres:</strong> {nbChambres}</p>
         <p class="text-blue-300"><strong>Salles de bain:</strong> {nbSdb}</p>
-        {favori && <p class="text-pink-500 font-bold">★ Favori</p>}
+        {favori && <p class="text-yellow-500 font-bold">★ Favori</p>}
         <a href={`/offres/${id}`}>Voir plus</a>
     </div>
-    <a href={`/offres/add`}>Ajouter une</a>
 </div>
 
 
