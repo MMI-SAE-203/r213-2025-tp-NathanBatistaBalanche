@@ -1,0 +1,40 @@
+---
+import Agent from"../../components/Agent.astro";
+import Base from "../../layouts/Base.astro";
+import { getAgents } from "../../backend.mjs";
+export const prerender = false;
+
+const agents = await getAgents();
+---
+
+<Base titre="Agents">
+    <h1 class="text-4xl font-bold text-center text-green-200 uppercase tracking-wider my-6">Offres</h1>
+    <div x-data="{ showFavorites: false, view: 'grid' }" class="p-4">
+        <div class="flex gap-4 mb-4">
+            <button 
+                @click="view = 'grid'" 
+                class="bg-red-600 text-white px-4 py-2 rounded shadow hover:bg-red-700"
+            >
+                Affichage Grille
+            </button>
+            <button 
+                @click="view = 'list'" 
+                class="bg-red-600 text-white px-4 py-2 rounded shadow hover:bg-red-700"
+            >
+                Affichage Liste
+            </button>
+        </div>
+        <div x-show="view === 'grid'" class="grid grid-cols-3 items-stretch flex-wrap justify-center mt-4">
+            {agents?.map((agent) => (
+                <Agent {...agent} />
+            ))}
+        </div>
+        <div x-show="view === 'list'" class="flex flex-col gap-4 mt-4">
+            {agents?.map((agent) => (
+                <div>
+                    <Agent {...agent} />
+                </div>
+            ))}
+        </div>
+    </div>
+</Base>

@@ -81,3 +81,19 @@ export async function filterByPrix(minPrix, maxPrix) {
         return [];
     }
 }
+
+export async function getAgents() {
+    try {
+        let data = await db.collection('agent').getFullList({
+            sort: 'id',
+        });
+        data = data.map((agent) => {
+            return agent;
+        });
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.log('Une erreur est survenue en lisant la liste des maisons', error);
+        return [];
+    }
+}
