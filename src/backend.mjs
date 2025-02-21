@@ -97,3 +97,21 @@ export async function getAgents() {
         return [];
     }
 }
+
+export async function getOffresByagent (id) {
+    try {
+        let data = await db.collection('maison').getFullList({
+            filter: `agent.id = '${id}'`,
+            expand: 'agent',
+        });
+        data = data.map((maison) => {
+            maison.imgUrl = db.files.getURL(maison, maison.images);
+            return maison;
+        });
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.log('Une erreur est survenue en lisant la liste des maisons', error);
+        return [];
+    };
+}

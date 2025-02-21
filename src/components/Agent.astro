@@ -19,6 +19,7 @@ const {id, prenom, nom, email} = Astro.props;
         <h2 class="text-2xl font-bold mb-2">{nom}</h2>
         <p class="text-blue-300"><strong>Prenom :</strong> {prenom}</p>
         <p class="text-blue-300"><strong>Mail :</strong> {email}</p>
+        <a href={`/agent/${id}`}>Voir les offres de cet agent</a>
     </div>
 </div>
 
