@@ -14,6 +14,11 @@
 
 const { nomMaison, adresse, prix, surface, nbChambres, nbSdb, favori, imgUrl, id} = Astro.props;
 ---
+<script>
+    //@ts-nocheck
+    import { setFavori } from "../backend.mjs";
+    window.setFavori = setFavori;
+</script>
 <div class="border rounded-lg shadow-md p-4 m-4 max-w-sm">
     <div class="p-4">
         <img src={imgUrl} alt={nomMaison} class="w-full h-48 object-cover rounded-lg" />
@@ -24,8 +29,12 @@ const { nomMaison, adresse, prix, surface, nbChambres, nbSdb, favori, imgUrl, id
         <p class="text-blue-300"><strong>Chambres:</strong> {nbChambres}</p>
         <p class="text-blue-300"><strong>Salles de bain:</strong> {nbSdb}</p>
         {favori && <p class="text-yellow-500 font-bold">★ Favori</p>}
-        <a href={`/offres/${id}`}>Voir plus</a>
+        <a href={`/offres/${id}`}>Voir plus</a>    
+        <button onclick="SetFavori()" class="rounded-lg">
+            Ajouter à mes favoris
+        </button>
     </div>
+
 </div>
 
 

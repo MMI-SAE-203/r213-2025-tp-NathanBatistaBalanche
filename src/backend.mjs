@@ -88,6 +88,7 @@ export async function getAgents() {
             sort: 'id',
         });
         data = data.map((agent) => {
+            agent.imgUrl = db.files.getURL(agent, agent.image);
             return agent;
         });
         console.log(data);
@@ -114,4 +115,8 @@ export async function getOffresByagent (id) {
         console.log('Une erreur est survenue en lisant la liste des maisons', error);
         return [];
     };
+}
+
+export async function setFavori(house) {
+    await pb.collection('maison').update(house.id, {favori: !house.favori});
 }
